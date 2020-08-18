@@ -6,7 +6,7 @@ function main(){
     function cache(callback){
         axios({
             method: 'get',
-            url: 'http://192.168.1.188:9696/api/list_all',
+            url: 'http://10.108.71.97:9696/api/list_all',
             responseType: 'json',
         })
         .then((response) => {

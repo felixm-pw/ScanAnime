@@ -1,10 +1,9 @@
 // Default
 import React from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 // Antd
-import { Typography,  Row, Col, Card, Button } from 'antd'
-import { PlayCircleOutlined } from '@ant-design/icons'
+import { Typography, Card, Button } from 'antd'
 // Virtualised List
 import AutoSizer from 'react-virtualized/dist/commonjs/AutoSizer';
 import List from 'react-virtualized/dist/commonjs/List';
@@ -17,28 +16,23 @@ class Home extends React.Component{
     constructor(){
         super()
         this.rowRenderer = this.rowRenderer.bind(this)
-        this.loading = this.loading.bind(this)
         this.epcheck = this.epcheck.bind(this)
         this.state = {
-            hot: [],
             new: [],
+            move: ""
         }
     }
 
     componentDidMount(){
         axios({
             method: 'get',
-            url: 'http://192.168.1.188:9696/api/new_content',
+            url: 'http://10.108.71.97:9696/api/new_content',
             responseType: 'json'
         })
         .then((response) => {
             this.setState({
-                hot: response.data.HotContent,
-                new: response.data.NewContent
+                new: response.data
             })
-            setTimeout(() => {
-                console.log(response.data.NewContent)
-            }, 1000);
         })
         .catch((error) => {
             console.log(error)
@@ -63,7 +57,6 @@ class Home extends React.Component{
             fontSize: 20,
             color: ColorPack.textColor
         }
-        const { Text } = Typography
         return(
             <div style={{ height: '100vh', backgroundColor: '#1f1f1f' }}> 
                 <div>
@@ -71,7 +64,7 @@ class Home extends React.Component{
                 </div>
                 <div style={container}>
                     <Card bodyStyle={{padding: 0}} style={card}>
-                        <Text style={title}>Latest Updates</Text>
+                        <Typography style={title}>Latest Updates</Typography>
                         <div style={{width: '100%', height: 600, marginTop: 10}}>
                             <AutoSizer>
                                 {({width, height}) => (
@@ -79,7 +72,7 @@ class Home extends React.Component{
                                         width={width}
                                         height={height}
                                         rowCount={this.state.new.length}
-                                        rowHeight={80}
+                                        rowHeight={84}
                                         rowRenderer={this.rowRenderer}
                                     />
                                 )}
@@ -87,71 +80,29 @@ class Home extends React.Component{
                         </div> 
                     </Card>
                 </div>
+                {this.state.move}
             </div>
         )
     }
 
     rowRenderer({key,index,style,}) {
-        const { Text } = Typography
-        const card = {
-            backgroundColor: ColorPack.cardColor,
-            borderColor: ColorPack.cardBorderColor,
-        }
-        const text = {
-            color: '#ababab',
-            fontSize: 14,
-            whiteSpace: 'nowrap',
-            overflow: 'elipsis'
-        }
-        const button = {
-            width: '100%',
-            height: 64,
-            backgroundColor: ColorPack.cardColor,
-            borderColor: ColorPack.cardBorderColor,
-            color: ColorPack.textColor
-        }
         return(
             <div key={key} style={style}>
-                <Card style={card} bodyStyle={{padding: 2}}>
-                    <div style={{width: "100%", display: "flex", justifyContent: "space-between"}}>
-
-                        <div style={{float: "left", width: 60 }}>
-                            <img style={{width: 48, height: 64}} src={'http://www.anime1.com/main/img/content/'+this.state.new[index].Seo+'/'+this.state.new[index].Image} />
+                <div>
+                    <Button style={{width:'100%', height: 76, padding: 2}} onClick={() => {this.setState({move: <Redirect push to={{pathname: "/player", state: {seasonID: this.state.new[index].Content_ID, episodeID: this.state.new[index].Episodes[0].Episode_ID, episodeName: this.state.new[index].Episodes[0].Title}}} />})}}>
+                        
+                        <div style={{float: 'left'}}>
+                            <img style={{height: 70, width: 50}} alt="img" src={'http://www.anime1.com/main/img/content/'+this.state.new[index].Seo+'/'+this.state.new[index].Image} />
+                        </div>
+                        <div style={{marginLeft: 60, position: 'absolute'}}>
+                            <div style={{textAlign: 'left',width: '100%', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{this.state.new[index].Title}</div>
+                            <div style={{textAlign: 'left'}}>{this.epcheck(index)}</div>
                         </div>
                         
-                        <div style={{width: "100%"}}>
-                            <div style={text}>{this.state.new[index].Title}</div>
-                            <div style={text}>{this.epcheck(index)}</div>
-                        </div>
-                        
-                        <div style={{float:"right", width: 70}}>
-                            <Link to={{pathname: "/player", state: { seasonID: this.state.new[index].Content_ID }}}>
-                                <Button style={button}><PlayCircleOutlined /></Button>
-                            </Link>   
-                        </div>
-                        
-                    </div>
-                </Card>                  
+                    </Button>
+                </div>              
             </div>
         );
-    }
-
-    loading(){
-            return(
-                <div style={{width: '100%', height: 300, marginTop: 10}}>
-                    <AutoSizer>
-                        {({width, height}) => (
-                            <List
-                                width={width}
-                                height={height}
-                                rowCount={this.state.new.length}
-                                rowHeight={80}
-                                rowRenderer={this.rowRenderer}
-                            />
-                        )}
-                    </AutoSizer>
-                </div>
-            )     
     }
 
     epcheck(index){

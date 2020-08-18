@@ -26,7 +26,7 @@ class Season extends React.Component{
     componentDidMount() {
         axios({
           method: 'post',
-          url: 'http://192.168.1.188:9696/api/get_season',
+          url: 'http://10.108.71.97:9696/api/get_season',
           responseType: 'json',
           data:{ test: this.props.location.state.seasonID } 
         })
@@ -89,7 +89,7 @@ class Season extends React.Component{
                             </Col>
                             <Col xs={24} md={24} lg={24}>
                                 <div style={{textAlign: 'center',}}>
-                                    <img style={picture} src={coverArt} />
+                                    <img style={picture} alt="img" src={coverArt} />
                                 </div>
                             </Col>
                             <Col xs={24} md={24} lg={24}>

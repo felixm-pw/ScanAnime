@@ -1,6 +1,6 @@
 import React from 'react'
-import { Input, Card, Button, Typography, Icon } from 'antd';
-
+import { Input, Card, Button, Icon } from 'antd';
+import './styles.css'
 import 'antd/dist/antd.css';
 
 class Login extends React.Component{
@@ -17,26 +17,27 @@ class Login extends React.Component{
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            height: '100vh'
         }
         const card = {
-            maxWidth: 400,
-            marginLeft:20,
+            maxWidth: 300,
+            marginLeft: 20,
             marginRight: 20,
             textAlign: 'left'
         }
-        const title = {
-            marginBottom: 10
-        }
         const inputBox = {
-            marginBottom: 10
+            marginBottom: 10,
+            width: '100%'
         }
         return(
             <div style={container}>
                 <Card style={card}>
-                    <Typography style={title}>scananime.ru</Typography>
-                    <Input style={inputBox} prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="user" />
-                    <Input.Password style={inputBox} prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="password" />
-                    <Button>Login</Button>
+                    <div style={{textAlign: 'center', marginBottom: 20}}>
+                        <img src={"logo.png"} alt="Logo" height="150" />
+                    </div>
+                    <Input style={inputBox} prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
+                    <Input.Password style={inputBox} prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Password" />
+                    <Button style={{width: '100%'}}>Login</Button>
                 </Card>
             </div>
         );

@@ -22,4 +22,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-/src/Packs/api.js
+/src/packs/api.js
+/src/network/registration-keys.json
+/src/network/list-cache.json

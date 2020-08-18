@@ -12,6 +12,7 @@ import 'react-virtualized/styles.css'
 // Customs
 import ColorPack from '../packs/colors.js'
 import Navbar from './navbar.jsx'
+import './styles.css'
 
 class Search extends React.Component {
     constructor(){
@@ -31,7 +32,7 @@ class Search extends React.Component {
     componentDidMount(){
         axios({
             method: 'get',
-            url: 'http://192.168.1.188:9696/api/new_list',
+            url: 'http://10.108.71.97:9696/api/new_list',
             responseType: 'json',
         })
         .then((response) => {
@@ -43,6 +44,9 @@ class Search extends React.Component {
         .catch((error) => {
             console.log(error)
         })
+        setTimeout(() => {
+            console.log(this.state.list[0])
+        }, 1000);
     }
 
     handleSearch(searchString){
@@ -87,7 +91,7 @@ class Search extends React.Component {
                 <div style={container}>
                     <Card bodyStyle={{padding: '0'}} style={card}>
                         <div style={searchContainer}>
-                            <Search style={searchbar} placeholder={"Search..."} onSearch={value => this.handleSearch(value)}/>
+                            <Search className={'input'} placeholder={"Search..."} onSearch={value => this.handleSearch(value)}/>
                         </div>
                         {this.loading()}
                     </Card>  
@@ -105,7 +109,7 @@ class Search extends React.Component {
         }
         return(
             <div key={key} style={style}>
-                <Link style={link} to={{pathname: "/season", state: {seasonID: this.state.list[index].id}}}>{this.state.list[index].title}</Link>
+                <Link style={link} to={{pathname: "/player", state: {seasonID: this.state.list[index].id, episodeName: "Episode 1"}}}>{this.state.list[index].title}</Link>
             </div>
         );
     }

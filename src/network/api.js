@@ -20,7 +20,7 @@ var options = {
 
 //Api Endpoints
 
-//List all from List-Cache.js
+//List all from local cache
 app.get('/api/new_list', (req, res) => {
     fs.readFile('List-Cache.json', function readFileCallback(err, data) {
         if(err){console.log(err)}
@@ -43,7 +43,7 @@ app.get('/api/list_all', (req, res) => {
 app.get('/api/new_content', (req, res) => {
     axios.post(api.api_domain, 'new_content=', options)
     .then((response) => {
-        res.status(200).send(response.data)
+        res.status(200).send(response.data.NewContent)
     })
     .catch((err) => {
         console.log(err);
