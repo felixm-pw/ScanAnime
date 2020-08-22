@@ -12,7 +12,6 @@ import 'react-virtualized/styles.css'
 // Customs
 import ColorPack from '../packs/colors.js'
 import Navbar from './navbar.jsx'
-import './styles.css'
 
 class Search extends React.Component {
     constructor(){
@@ -132,7 +131,7 @@ class Search extends React.Component {
                 <div style={{width: '100%', height: 600}}>
                     <AutoSizer>
                         {({width, height}) => (
-                            <List
+                            <List                        
                                 width={width}
                                 height={height}
                                 rowCount={this.state.list.length}

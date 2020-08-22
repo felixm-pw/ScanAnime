@@ -50,6 +50,17 @@ app.get('/api/new_content', (req, res) => {
     })
 })
 
+//List Hot Content from Animania
+app.get('/api/hot_content', (req, res) => {
+    axios.post(api.api_domain, 'new_content=', options)
+    .then((response) => {
+        res.status(200).send(response.data.HotContent)
+    })
+    .catch((err) => {
+        console.log(err);
+    })
+})
+
 //Get Episode from Animania
 app.post('/api/get_episode', (req, res) => {
     axios.post(api.api_domain, 'episode_id=' + req.body.id, options)

@@ -55,6 +55,7 @@ class Home extends React.Component{
         }
         const title = {
             fontSize: 20,
+            fontWeight: 1,
             color: ColorPack.textColor
         }
         return(
@@ -64,7 +65,7 @@ class Home extends React.Component{
                 </div>
                 <div style={container}>
                     <Card bodyStyle={{padding: 0}} style={card}>
-                        <Typography style={title}>Latest Updates</Typography>
+                        <Typography style={title}>New Releases</Typography>
                         <div style={{width: '100%', height: 600, marginTop: 10}}>
                             <AutoSizer>
                                 {({width, height}) => (

@@ -1,6 +1,5 @@
 import React from 'react'
 import { Input, Card, Button, Icon } from 'antd';
-import './styles.css'
 import 'antd/dist/antd.css';
 
 class Login extends React.Component{

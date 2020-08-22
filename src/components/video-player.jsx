@@ -3,7 +3,7 @@ import React from 'react'
 import axios from 'axios'
 import ReactPlayer from 'react-player'
 // AntD
-import { Card, Select, Typography, Tag, Divider } from 'antd'
+import { Card, Select, Typography, Tag, Divider, Button } from 'antd'
 // Custom
 import ColorPack from '../packs/colors.js'
 import Navbar from './navbar.jsx'
@@ -14,11 +14,13 @@ class App extends React.Component {
     this.menuItems = this.menuItems.bind(this)
     this.getEpisode = this.getEpisode.bind(this)
     this.getTags = this.getTags.bind(this)
+    this.checkError = this.checkError.bind(this)
 
     this.state = {
       anime: [],
       eps: [],
       url: '',
+      error: false
     }
   }
 
@@ -35,9 +37,7 @@ class App extends React.Component {
         eps: response.data.Episodes,
       })
       if(this.props.location.state.episodeName === "Episode 1"){
-        if(this.state.eps.length !== 0){
-          this.getEpisode(this.state.anime.Episodes[0].Episode_ID)
-        }
+        this.getEpisode(this.state.anime.Episodes[0].Episode_ID)
       }else {
         this.getEpisode(this.props.location.state.episodeID)
       }
@@ -80,6 +80,7 @@ class App extends React.Component {
       justifyContent: 'center',
     }
     const playerInnerContainer = {
+      display: 'block',
       maxWidth: 960,
       maxHeight: 540,
       marginBottom: 10
@@ -109,14 +110,22 @@ class App extends React.Component {
               <Divider style={{marginTop: 10, marginBottom: 10}} />
 
               <div style={{fontWeight: "bold"}}>
+
                 <div style={{float: 'left', marginRight: 16}}>
                   <img style={{height: 104}} alt="img" src={'http://www.anime1.com/main/img/content/'+this.state.anime.Seo+'/'+this.state.anime.Image} />
                 </div>
+
+                <div style={{float: 'right', height: 104}}> 
+                  <div><Button size={'small'} block={true} style={{marginBottom: 6}}>Add To Favourites</Button></div>
+                  <div><Button size={'small'} block={true} style={{backgroundColor: '#254182', color: '#ffffff', borderColor: '#254182'}} href={"https://myanimelist.net/search/all?q="+this.state.anime.Title} target="_blank">MAL</Button></div>
+                </div>
+
                 <div><Text>Type:<Text style={{fontWeight: "normal", marginLeft: 10}}>{this.state.anime.Type}</Text></Text></div>
                 <div><Text>Status:<Text style={{fontWeight: "normal", marginLeft: 10}}>{this.state.anime.Status}</Text></Text></div>
                 <div><Text>Language:<Text style={{fontWeight: "normal", marginLeft: 10}}>{this.state.anime.Language}</Text></Text></div>
                 <div><Text>Age Rating:<Text style={{fontWeight: "normal", marginLeft: 10}}>{this.state.anime.AgeRating}</Text></Text></div>
-                <div><Text>Release:<Text style={{fontWeight: "normal", marginLeft: 10}}>{this.state.anime.Date}</Text></Text></div>
+                <div><Text>Release:<Text style={{fontWeight: "normal", marginLeft: 10}}>{this.state.anime.Date}</Text></Text></div>      
+
               </div>
               <Divider style={{marginTop: 10, marginBottom: 10}} />
 
@@ -132,7 +141,7 @@ class App extends React.Component {
           <Card bodyStyle={{padding: '0'}} style={card}>
             <div style={playerOuterContainer}>
               <div style={playerInnerContainer}>
-                <ReactPlayer width={'100%'} height={'100%'} url={this.state.url} controls={true} pip={true} />
+                {this.checkError()}
               </div>
             </div>
               <div style={{textAlign: 'center', width: '100%'}}>
@@ -156,6 +165,7 @@ class App extends React.Component {
     .then((response) => {
       this.setState({
         url: 'http://st2.anime1.com' + response.data[0].link,
+        error: false
       })
     })
     .catch((error) => {
@@ -172,6 +182,14 @@ class App extends React.Component {
       }
     }
     return(tags)
+  }
+
+  checkError(){
+    if(this.state.error === true){
+      return(<div style={{height: '100%', width: '100%'}}>This video is broken, check back later</div>)
+    } else{
+      return(<ReactPlayer width={'100%'} height={'100%'} url={this.state.url} controls={true} pip={true} onError={() => this.setState({error: true})}/>)
+    }
   }
 
 }

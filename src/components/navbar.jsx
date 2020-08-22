@@ -2,8 +2,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 // antD
-import { Card, Icon, Drawer, Typography, Button } from 'antd';
-import { HomeOutlined, StarOutlined, SearchOutlined, CarryOutOutlined } from '@ant-design/icons';
+import { Card, Icon, Drawer, Typography, Button } from 'antd'
+import { HomeOutlined, StarOutlined, SearchOutlined, CarryOutOutlined } from '@ant-design/icons'
 // Custom
 import ColorPack from '../packs/colors.js'
 
