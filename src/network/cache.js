@@ -30,7 +30,7 @@ function main(){
     
     cache((newList) => {
         let json = JSON.stringify(newList)
-        fs.writeFile('list-Cache.json', json, (err) => {
+        fs.writeFile('cache.json', json, (err) => {
             if (err){
                 console.log(chalk.bgRed.black(err))
             } 

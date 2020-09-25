@@ -22,7 +22,7 @@ var options = {
 
 //List all from local cache
 app.get('/api/new_list', (req, res) => {
-    fs.readFile('List-Cache.json', function readFileCallback(err, data) {
+    fs.readFile('cache.json', function readFileCallback(err, data) {
         if(err){console.log(err)}
         res.status(200).send(data)
     })

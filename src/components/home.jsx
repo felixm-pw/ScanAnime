@@ -50,6 +50,12 @@ class Home extends React.Component{
     }
 
     render(){
+        const { Text } = Typography
+        const container = {
+            justifyContent: 'center',
+            textAlign: 'center',
+            display: 'flex'
+        }
         const card = {
             marginTop: 10,
             padding: 10,
@@ -66,24 +72,24 @@ class Home extends React.Component{
                 <div>
                     <Navbar />
                 </div>
-                <div className="container">
-                    <Card bodyStyle={{padding: '0'}} className="card">
+                <div style={container}>
+                    <Card bodyStyle={{padding: '0'}} style={card}>
                         <div>
                             <img style={{float: 'right'}} src={"logo.png"} alt="Logo" height="60" />
                         </div>
                         <div>
-                           <h1 className="title">Welcome to ScanAnime!</h1> 
+                           <Text className={'title'}>Welcome to ScanAnime!</Text> 
                         </div>
-                        <h1 className="text">The database currently has {<CountUp start={0} end={this.state.animeCount} duration={2}></CountUp>} anime.</h1>
+                        <Text style={text}>The database currently has {<CountUp start={0} end={this.state.animeCount} duration={2}></CountUp>} anime.</Text>
                     </Card>                   
                 </div>
 
-                <div className="container">
-                    <Card bodyStyle={{padding: '0'}} className="card">
+                <div style={container}>
+                    <Card bodyStyle={{padding: '0'}} style={card}>
                         <div>
-                           <h1 className="title">News</h1> 
+                           <Text className={'title'}>News</Text> 
                         </div>
-                        <h1 className="text">Rest in peace Kissanime, you will be missed greatly. Thanks for the 7 years 💔 much love from Scananime!</h1>
+                        <Text style={text}>Rest in peace Kissanime, you will be missed greatly. Thanks for the 7 years 💔 much love from Scananime!</Text>
                     </Card>                   
                 </div>
             </div>

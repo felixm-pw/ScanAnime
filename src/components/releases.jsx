@@ -90,7 +90,7 @@ class Home extends React.Component{
         return(
             <div key={key} style={style}>
                 <div>
-                    <Button style={{width:'100%', height: 76, padding: 2}} onClick={() => {this.setState({move: <Redirect push to={{pathname: "/player", state: {seasonID: this.state.new[index].Content_ID, episodeID: this.state.new[index].Episodes[0].Episode_ID, episodeName: this.state.new[index].Episodes[0].Title}}} />})}}>
+                    <Button style={{width:'100%', height: 76, padding: 2, backgroundColor: '#181A1B', color: '#ababab', borderColor: '#5D5D5D' }} onClick={() => {this.setState({move: <Redirect push to={{pathname: "/player", state: {seasonID: this.state.new[index].Content_ID, episodeID: this.state.new[index].Episodes[0].Episode_ID, episodeName: this.state.new[index].Episodes[0].Title}}} />})}}>
                         
                         <div style={{float: 'left'}}>
                             <img style={{height: 70, width: 50}} alt="img" src={'http://www.anime1.com/main/img/content/'+this.state.new[index].Seo+'/'+this.state.new[index].Image} />

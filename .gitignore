@@ -24,4 +24,4 @@ yarn-error.log*
 
 /src/packs/api.js
 /src/network/registration-keys.json
-/src/network/list-cache.json
+/src/network/cache.json

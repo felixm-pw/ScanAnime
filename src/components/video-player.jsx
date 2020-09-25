@@ -74,7 +74,6 @@ class App extends React.Component {
       color: '#ababab'
     }
     const playerOuterContainer = {
-      marginTop: 20,
       width: '100%',
       display: 'flex',
       justifyContent: 'center',
@@ -107,7 +106,7 @@ class App extends React.Component {
 
               <div><Text style={title}>{this.state.anime.Title}</Text></div>
               <div>{this.getTags()}</div>
-              <Divider style={{marginTop: 10, marginBottom: 10}} />
+              <Divider style={{marginTop: 10, marginBottom: 10, backgroundColor: '#737373'}} />
 
               <div style={{fontWeight: "bold"}}>
 
@@ -116,21 +115,21 @@ class App extends React.Component {
                 </div>
 
                 <div style={{float: 'right', height: 104}}> 
-                  <div><Button size={'small'} block={true} style={{marginBottom: 6}}>Add To Favourites</Button></div>
+                  <div><Button size={'small'} block={true} style={{marginBottom: 6, backgroundColor: '#181A1B', color: '#ababab', borderColor: '#5D5D5D'}}>Add To Favourites</Button></div>
                   <div><Button size={'small'} block={true} style={{backgroundColor: '#254182', color: '#ffffff', borderColor: '#254182'}} href={"https://myanimelist.net/search/all?q="+this.state.anime.Title} target="_blank">MAL</Button></div>
                 </div>
 
-                <div><Text>Type:<Text style={{fontWeight: "normal", marginLeft: 10}}>{this.state.anime.Type}</Text></Text></div>
-                <div><Text>Status:<Text style={{fontWeight: "normal", marginLeft: 10}}>{this.state.anime.Status}</Text></Text></div>
-                <div><Text>Language:<Text style={{fontWeight: "normal", marginLeft: 10}}>{this.state.anime.Language}</Text></Text></div>
-                <div><Text>Age Rating:<Text style={{fontWeight: "normal", marginLeft: 10}}>{this.state.anime.AgeRating}</Text></Text></div>
-                <div><Text>Release:<Text style={{fontWeight: "normal", marginLeft: 10}}>{this.state.anime.Date}</Text></Text></div>      
+                <div><Text style={{color: '#ababab'}}>Type:<Text style={{fontWeight: "normal", marginLeft: 10, color: '#ababab'}}>{this.state.anime.Type}</Text></Text></div>
+                <div><Text style={{color: '#ababab'}}>Status:<Text style={{fontWeight: "normal", marginLeft: 10, color: '#ababab'}}>{this.state.anime.Status}</Text></Text></div>
+                <div><Text style={{color: '#ababab'}}>Language:<Text style={{fontWeight: "normal", marginLeft: 10, color: '#ababab'}}>{this.state.anime.Language}</Text></Text></div>
+                <div><Text style={{color: '#ababab'}}>Age Rating:<Text style={{fontWeight: "normal", marginLeft: 10, color: '#ababab'}}>{this.state.anime.AgeRating}</Text></Text></div>
+                <div><Text style={{color: '#ababab'}}>Release:<Text style={{fontWeight: "normal", marginLeft: 10, color: '#ababab'}}>{this.state.anime.Date}</Text></Text></div>      
 
               </div>
-              <Divider style={{marginTop: 10, marginBottom: 10}} />
+              <Divider style={{marginTop: 10, marginBottom: 10, backgroundColor: '#737373'}} />
 
               <div>
-              <Paragraph ellipsis={{ rows: 4, expandable: true, symbol: 'more' }}>{this.state.anime.Description}</Paragraph>
+              <Paragraph style={{color: '#ababab'}} ellipsis={{ rows: 4, expandable: true, symbol: 'more' }}>{this.state.anime.Description}</Paragraph>
               </div>
 
             </div>
@@ -164,7 +163,7 @@ class App extends React.Component {
     })
     .then((response) => {
       this.setState({
-        url: 'http://st2.anime1.com' + response.data[0].link,
+        url: 'http://st7.anime1.com' + response.data[0].link,
         error: false
       })
     })
@@ -178,7 +177,7 @@ class App extends React.Component {
       var tags = []
       let test = Object.keys(this.state.anime.Categories)
       for(var i = 0; i < test.length; i++){
-        tags.push(<Tag style={{marginTop: 10}} key={i}>{this.state.anime.Categories[test[i]]}</Tag>)
+        tags.push(<Tag style={{marginTop: 10, backgroundColor: '#181A1B', color: '#ababab', borderColor: '#5D5D5D' }} key={i}>{this.state.anime.Categories[test[i]]}</Tag>)
       }
     }
     return(tags)
