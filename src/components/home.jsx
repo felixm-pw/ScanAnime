@@ -53,7 +53,6 @@ class Home extends React.Component{
         const { Text } = Typography
         const container = {
             justifyContent: 'center',
-            textAlign: 'center',
             display: 'flex'
         }
         const card = {
@@ -67,6 +66,7 @@ class Home extends React.Component{
         const text = {
             color: ColorPack.textColor
         }
+
         return(
             <div>
                 <div>
@@ -78,10 +78,11 @@ class Home extends React.Component{
                             <img style={{float: 'right'}} src={"logo.png"} alt="Logo" height="60" />
                         </div>
                         <div>
-                           <Text className={'title'}>Welcome to ScanAnime!</Text> 
+                        <Text className={'title'}>Welcome to ScanAnime!</Text> 
                         </div>
                         <Text style={text}>The database currently has {<CountUp start={0} end={this.state.animeCount} duration={2}></CountUp>} anime.</Text>
-                    </Card>                   
+                    </Card> 
+                                      
                 </div>
 
                 <div style={container}>

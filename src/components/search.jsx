@@ -83,7 +83,7 @@ class Search extends React.Component {
             display: 'flex'
         }
         return(
-            <div style={{ height: '100vh', backgroundColor: '#1f1f1f' }}>
+            <div style={{ height: '100vh', backgroundColor: '#131415' }}>
                 <div>
                     <Navbar />
                 </div>

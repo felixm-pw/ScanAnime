@@ -59,7 +59,7 @@ class Home extends React.Component{
             color: ColorPack.textColor
         }
         return(
-            <div style={{ height: '100vh', backgroundColor: '#1f1f1f' }}> 
+            <div style={{ height: '100vh', backgroundColor: '#131415' }}> 
                 <div>
                     <Navbar />
                 </div>
