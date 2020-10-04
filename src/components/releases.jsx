@@ -3,7 +3,7 @@ import React from 'react'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
 // Antd
-import { Typography, Card, Button } from 'antd'
+import { Typography, Card, Button, message } from 'antd'
 // Virtualised List
 import AutoSizer from 'react-virtualized/dist/commonjs/AutoSizer';
 import List from 'react-virtualized/dist/commonjs/List';
@@ -17,6 +17,7 @@ class Home extends React.Component{
         super()
         this.rowRenderer = this.rowRenderer.bind(this)
         this.epcheck = this.epcheck.bind(this)
+        this.arraycheck = this.arraycheck.bind(this)
         this.state = {
             new: [],
             move: ""
@@ -33,6 +34,7 @@ class Home extends React.Component{
             this.setState({
                 new: response.data
             })
+            console.log(this.state)
         })
         .catch((error) => {
             console.log(error)
@@ -90,7 +92,7 @@ class Home extends React.Component{
         return(
             <div key={key} style={style}>
                 <div>
-                    <Button style={{width:'100%', height: 76, padding: 2, backgroundColor: '#181A1B', color: '#ababab', borderColor: '#5D5D5D' }} onClick={() => {this.setState({move: <Redirect push to={{pathname: "/player", state: {seasonID: this.state.new[index].Content_ID, episodeID: this.state.new[index].Episodes[0].Episode_ID, episodeName: this.state.new[index].Episodes[0].Title}}} />})}}>
+                    <Button style={{width:'100%', height: 76, padding: 2, backgroundColor: '#181A1B', color: '#ababab', borderColor: '#5D5D5D' }} onClick={() => this.arraycheck(index)}>
                         
                         <div style={{float: 'left'}}>
                             <img style={{height: 70, width: 50}} alt="img" src={'http://www.anime1.com/main/img/content/'+this.state.new[index].Seo+'/'+this.state.new[index].Image} />
@@ -112,6 +114,15 @@ class Home extends React.Component{
         }
         else{
             return(this.state.new[index].Episodes[0].Title)
+        }
+    }
+
+    arraycheck(index){
+        if(this.state.new[index].Episodes.length != 0){
+            this.setState({move: <Redirect push to={{pathname: "/player", state: {seasonID: this.state.new[index].Content_ID, episodeID: this.state.new[index].Episodes[0].Episode_ID, episodeName: this.state.new[index].Episodes[0].Title}}} />})
+            
+        } else {
+           this.setState({ move: message.info({ content: 'Episode 1 hasn\'t released yet! Check back later.'})})
         }
     }
 }
