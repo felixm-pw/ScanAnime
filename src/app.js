@@ -7,7 +7,6 @@ import VideoPlayer from './components/video-player.jsx'
 import Search from './components/search.jsx'
 import Login from './components/login.jsx'
 import Releases from './components/releases.jsx'
-import Season from './components/season.jsx'
 
 class App extends React.Component {
   render() {
@@ -20,7 +19,6 @@ class App extends React.Component {
           <Route path="/player" exact component={VideoPlayer}/>
           <Route path="/login" exact component={Login}/>
           <Route path="/releases" exact component={Releases}/>
-          <Route path="/season" exact component={Season}/>
         </Switch>
       </div>
     );

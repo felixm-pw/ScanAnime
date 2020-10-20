@@ -7,6 +7,7 @@ import { Typography, Card } from 'antd'
 // Customs
 import Navbar from './navbar'
 import ColorPack from '../packs/colors.js'
+import NetConfig from '../packs/net_config'
 import '../styles/home-styles.css'
 
 class Home extends React.Component{
@@ -21,7 +22,7 @@ class Home extends React.Component{
     componentDidMount(){
         axios({
             method: 'get',
-            url: 'http://10.108.71.97:9696/api/new_list',
+            url: 'http://'+NetConfig.ip+':'+NetConfig.port+'/api/new_list',
             responseType: 'json',
         })
         .then((response) => {
@@ -35,7 +36,7 @@ class Home extends React.Component{
 
         axios({
             method: 'get',
-            url: 'http://10.108.71.97:9696/api/hot_content',
+            url: 'http://'+NetConfig.ip+':'+NetConfig.port+'/api/hot_content',
             responseType: 'json',
         })
         .then((response) => {

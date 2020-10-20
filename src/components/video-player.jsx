@@ -7,6 +7,9 @@ import { Card, Select, Typography, Tag, Divider, Button } from 'antd'
 // Custom
 import ColorPack from '../packs/colors.js'
 import Navbar from './navbar.jsx'
+import NetConfig from '../packs/net_config'
+import Api from '../packs/api.js'
+import api from '../packs/api.js'
 
 class App extends React.Component {
   constructor() {
@@ -27,7 +30,7 @@ class App extends React.Component {
   componentDidMount() {
     axios({
       method: 'post',
-      url: 'http://10.108.71.97:9696/api/get_season',
+      url: 'http://'+NetConfig.ip+':'+NetConfig.port+'/api/get_season',
       responseType: 'json',
       data:{ test: this.props.location.state.seasonID } 
     })
@@ -157,13 +160,13 @@ class App extends React.Component {
     var data = { id: value }
     axios({
       method: 'post',
-      url: 'http://10.108.71.97:9696/api/get_episode',
+      url: 'http://'+NetConfig.ip+':'+NetConfig.port+'/api/get_episode',
       responseType: 'json',
       data: data
     })
     .then((response) => {
       this.setState({
-        url: 'http://st7.anime1.com' + response.data[0].link,
+        url: api.api_video_url_1 + response.data[0].link,
         error: false
       })
     })

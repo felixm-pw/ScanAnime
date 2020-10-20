@@ -5,9 +5,10 @@ import { Redirect } from 'react-router-dom'
 // Antd
 import { Typography, Card, Button, message } from 'antd'
 // Virtualised List
-import AutoSizer from 'react-virtualized/dist/commonjs/AutoSizer';
-import List from 'react-virtualized/dist/commonjs/List';
-import 'react-virtualized/styles.css';
+import AutoSizer from 'react-virtualized/dist/commonjs/AutoSizer'
+import List from 'react-virtualized/dist/commonjs/List'
+import NetConfig from '../packs/net_config'
+import 'react-virtualized/styles.css'
 // Custom
 import ColorPack from '../packs/colors.js'
 import Navbar from './navbar'
@@ -27,7 +28,7 @@ class Home extends React.Component{
     componentDidMount(){
         axios({
             method: 'get',
-            url: 'http://10.108.71.97:9696/api/new_content',
+            url: 'http://'+NetConfig.ip+':'+NetConfig.port+'/api/new_content',
             responseType: 'json'
         })
         .then((response) => {

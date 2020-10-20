@@ -12,6 +12,7 @@ import 'react-virtualized/styles.css'
 // Customs
 import ColorPack from '../packs/colors.js'
 import Navbar from './navbar.jsx'
+import NetConfig from '../packs/net_config'
 
 class Search extends React.Component {
     constructor(){
@@ -31,7 +32,7 @@ class Search extends React.Component {
     componentDidMount(){
         axios({
             method: 'get',
-            url: 'http://10.108.71.97:9696/api/new_list',
+            url: 'http://'+NetConfig.ip+':'+NetConfig.port+'/api/new_list',
             responseType: 'json',
         })
         .then((response) => {
