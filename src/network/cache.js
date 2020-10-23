@@ -1,12 +1,13 @@
 const axios = require('axios')
 const fs = require('fs')
 const chalk = require('chalk')
+const NetConfig = require('../packs/net_config')
 
 function main(){
     function cache(callback){
         axios({
             method: 'get',
-            url: 'http://10.108.71.97:9696/api/list_all',
+            url: 'http://'+NetConfig.ip+':'+NetConfig.port+'/api/list_all',
             responseType: 'json',
         })
         .then((response) => {

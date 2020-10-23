@@ -5,6 +5,7 @@ const axios = require('axios')
 const fs = require('fs')
 const cors = require('cors')
 const api = require('../packs/api')
+const NetConfig = require('../packs/net_config')
 
 const app = express();
 
@@ -28,7 +29,7 @@ app.get('/api/new_list', (req, res) => {
     })
 })
 
-//List all from Animania
+//List all from external
 app.get('/api/list_all', (req, res) => {
     axios.post(api.api_domain, 'all_list=', options)
     .then((response) => {
@@ -39,7 +40,7 @@ app.get('/api/list_all', (req, res) => {
     })
 })
 
-//List New Content from Animania
+//List New Content from external
 app.get('/api/new_content', (req, res) => {
     axios.post(api.api_domain, 'new_content=', options)
     .then((response) => {
@@ -50,7 +51,7 @@ app.get('/api/new_content', (req, res) => {
     })
 })
 
-//List Hot Content from Animania
+//List Hot Content from external
 app.get('/api/hot_content', (req, res) => {
     axios.post(api.api_domain, 'new_content=', options)
     .then((response) => {
@@ -61,7 +62,7 @@ app.get('/api/hot_content', (req, res) => {
     })
 })
 
-//Get Episode from Animania
+//Get Episode from external
 app.post('/api/get_episode', (req, res) => {
     axios.post(api.api_domain, 'episode_id=' + req.body.id, options)
     .then((response) => {
@@ -72,7 +73,7 @@ app.post('/api/get_episode', (req, res) => {
     })
 })
 
-//Get Season from Animania
+//Get Season from external
 app.post('/api/get_season', (req, res) => {
     axios.post(api.api_domain, 'anime_id='+JSON.parse(JSON.stringify(req.body.test)), options)
     .then((response) => {
@@ -83,4 +84,4 @@ app.post('/api/get_season', (req, res) => {
     })
 })
 
-app.listen(process.env.PORT || 9696);
+app.listen(process.env.PORT || NetConfig.port);
