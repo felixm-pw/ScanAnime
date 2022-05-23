@@ -8,15 +8,15 @@
 ScanAnime is an anime streaming service I built for fun. It's designed to be used with an API, if you have one this should work well with some modifications to the cache and sorting / filtering systems. Use, modify & tweak, enjoy. The UI is still a work in progress (it's rough in places).
 </div>
 
-## 💎 Features
+## Features
 
-- ⚙️ REST API
-- 📦 Caching System
-- 📋 Listing, sorting & searching system
-- 💻 Mobile & Desktop scaling
-- 📺 Supports popout player
+- REST API
+- Caching System
+- Listing, sorting & searching system
+- Mobile & Desktop scaling
+- Supports popout player
 
-## 📦 Built Using
+## Built Using
 - [React JS](https://reactjs.org/)
 - [Ant Design](https://github.com/ant-design/ant-design)
 - [React Virtualized Lists](https://github.com/bvaughn/react-virtualized)
@@ -29,6 +29,6 @@ ScanAnime is an anime streaming service I built for fun. It's designed to be use
     <img width="100%" src="https://felixm.pw/assets/pictures/scananime-screen.png">
 </div>
 
-## ❌ Not included
-- 📩 API (scananime/src/packs/api.js)
-- 📡 Properly configured CORS (scananime/src/network/api.js)
+## Not included
+- API (scananime/src/packs/api.js)
+- Properly configured CORS (scananime/src/network/api.js)
