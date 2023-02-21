@@ -4,9 +4,7 @@
 
 <h1 align="center">ScanAnime</h1>
 
-<div>
 ScanAnime is an anime streaming service I built for fun. It's designed to be used with an API, if you have one this should work well with some modifications to the cache and sorting / filtering systems. Use, modify & tweak, enjoy. The UI is still a work in progress (it's rough in places).
-</div>
 
 ## Features
 
